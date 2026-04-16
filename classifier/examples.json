@@ -1,0 +1,322 @@
+[
+  {
+    "text": "ควรมีช่องทางรับฟีดแบคจากลูกค้าที่ชัดเจนขึ้น เพราะตอนนี้ฟีดแบคหลายอย่างไม่ถึงทีม",
+    "product": "other",
+    "issue_type": "feedback",
+    "category": "communication",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ควรอบรมทีม spe และทีม sales ให้ใช้ระบบเป็นก่อนออกพื้นที่",
+    "product": "other",
+    "issue_type": "feedback",
+    "category": "training",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "เครื่องชั่งน้ำหนักส่งค่าน้ำหนักมาได้แต่ไม่ส่ง body composition ต้องการให้แก้ไข",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "connectivity",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "เซ็นเซอร์ spo2 วัดค่าได้บ้างไม่ได้บ้าง สัญญาณไม่เสถียร",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "connectivity",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "ชื่อผู้ป่วยแสดงผิด แสดงเป็นชื่อผู้ตรวจแทน",
+    "product": "phr",
+    "issue_type": "incident/bug",
+    "category": "data display",
+    "severity": "S3",
+    "tenant": null
+  },
+  {
+    "text": "เปิดบลูทูธหลายเครื่องพร้อมกันแล้วค่าวัดเข้าสลับเครื่องกัน",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "connectivity",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "ลูกค้าถามว่าสามารถเชื่อม dashboard ของเรากับ dashboard kpi ของหน่วยงานได้มั้ย",
+    "product": "dashboard",
+    "issue_type": "feature request",
+    "category": "integration",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "อยากให้เพิ่ม admin หลายคน login เข้าเว็บได้ ไม่ต้องใช้ user เป็นเลขบัตรประชาชน",
+    "product": "dashboard",
+    "issue_type": "feature request",
+    "category": "user management/security",
+    "severity": "S3",
+    "tenant": null
+  },
+  {
+    "text": "user ปรับ font size ใน tablet แล้ว layout หน้าแอพแตก",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "ui/ux",
+    "severity": "S3",
+    "tenant": null
+  },
+  {
+    "text": "วัดค่าน้ำตาลแล้วจอ tablet ดับระหว่างรอ พอเปิดจอใหม่ค่าไม่เข้าระบบ",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "connectivity",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "ทีม spe โทรแจ้งว่าลูกค้าหลายรายชอบฟีเจอร์ที่เชื่อมข้อมูลเข้า app ได้เลย",
+    "product": "connect",
+    "issue_type": "feedback",
+    "category": "kudos",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ลูกค้า upload ข้อมูลไม่ได้ แต่พอออกแอพแล้วเข้าใหม่ upload ได้",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "data sync",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "upload ไม่ได้ซ้ำหลายครั้ง คนที่ทดสอบในออฟฟิศ upload ได้แต่คนที่ออกพื้นที่จริง upload ไม่ได้",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "data sync",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "ควรหาช่องทางอัพเดท stakeholder ทั้งหมดเกี่ยวกับ release note เพราะ sales และ spe มักไม่รู้ว่ามี feature ใหม่",
+    "product": "other",
+    "issue_type": "feedback",
+    "category": "communication",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "connect ถ้าลงทะเบียนเป็นผู้ดูแลระบบแล้ว ไม่ควรจะลงทะเบียนเป็นผู้ป่วยได้ ควรล็อครอล์ไว้",
+    "product": "connect",
+    "issue_type": "feature request",
+    "category": "user management/security",
+    "severity": "S2",
+    "tenant": "Tenant A"
+  },
+  {
+    "text": "ทีมอยากสร้าง video tutorial สอนการใช้งานลง YouTube แบบ public มีข้อกังวลเรื่องลิขสิทธิ์มั้ย",
+    "product": "other",
+    "issue_type": "inquiry",
+    "category": "training",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ลูกค้า b ยิงตั้งค่ารหัส dashboard พร้อมกัน 40 เครื่อง แล้ว service ล่ม",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S1",
+    "tenant": "Tenant B"
+  },
+  {
+    "text": "server ล่มทั้งหมด ลูกค้า b เข้าระบบไม่ได้เลยทุกสาขา ด่วนมาก",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S1",
+    "tenant": "Tenant B"
+  },
+  {
+    "text": "connect crash ทุกเครื่อง ออกพื้นที่อยู่แต่บันทึกข้อมูลไม่ได้เลย ด่วนมาก",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S1",
+    "tenant": null
+  },
+  {
+    "text": "ข้อมูลผู้ป่วยหายหมดเลย ไม่มีใน database เลย ด่วนมาก",
+    "product": "phr",
+    "issue_type": "incident/bug",
+    "category": "data sync",
+    "severity": "S1",
+    "tenant": null
+  },
+  {
+    "text": "dashboard ของลูกค้า b โหลดช้ามาก กว่าจะเปิดได้แต่ละหน้าใช้เวลาเป็นนาที",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S2",
+    "tenant": "Tenant B"
+  },
+  {
+    "text": "upload ข้อมูลไม่ได้ทั้งวัน เจ้าหน้าที่ลูกค้า b หลายคนทำซ้ำแล้วยังไม่ได้",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "data sync",
+    "severity": "S2",
+    "tenant": "Tenant B"
+  },
+  {
+    "text": "login เข้า dashboard ของลูกค้า b ไม่ได้เลย ลอง reset แล้วยังไม่ได้",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "user management/security",
+    "severity": "S2",
+    "tenant": "Tenant B"
+  },
+  {
+    "text": "กราฟใน dashboard ของลูกค้า b แสดงข้อมูลผิด ตัวเลขไม่ตรงกับที่ export ออกมา",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "data display",
+    "severity": "S3",
+    "tenant": "Tenant B"
+  },
+  {
+    "text": "ข้อมูลที่วัดวันนี้ยังไม่ขึ้น dashboard เลย ซิงค์ไม่เข้า",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "data sync",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "บันทึกข้อมูลในแอพแล้วแต่ใน dashboard ยังเห็นข้อมูลเก่า sync ไม่ทัน",
+    "product": "connect",
+    "issue_type": "incident/bug",
+    "category": "data sync",
+    "severity": "S2",
+    "tenant": null
+  },
+  {
+    "text": "ระบบ dashboard ล่มทั้งหมด เข้าไม่ได้เลยทุกสาขา ด่วนมาก",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S1",
+    "tenant": null
+  },
+  {
+    "text": "login ไม่ได้ทั้งระบบ ทั้ง connect และ dashboard เข้าไม่ได้เลย ด่วนมาก",
+    "product": "other",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S1",
+    "tenant": null
+  },
+  {
+    "text": "ลูกค้า feedback ว่า dashboard ใหม่ดูดีขึ้นมาก ชอบ design อ่านข้อมูลได้ง่ายกว่าเดิม",
+    "product": "dashboard",
+    "issue_type": "feedback",
+    "category": "kudos",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "เจ้าหน้าที่ชมว่าแอพใช้งานสะดวก ไม่ต้องกรอกข้อมูลซ้ำ ประหยัดเวลาได้เยอะ",
+    "product": "connect",
+    "issue_type": "feedback",
+    "category": "kudos",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ลูกค้า feedback ว่าชอบที่ระบบเชื่อมข้อมูลกับ HIS ได้ ทำให้ไม่ต้องกรอกซ้ำ",
+    "product": "connect",
+    "issue_type": "feedback",
+    "category": "kudos",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "อยากได้ export ข้อมูลจาก dashboard เป็น pdf ได้",
+    "product": "dashboard",
+    "issue_type": "feature request",
+    "category": "export",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ขอ reset รหัสผ่าน admin dashboard ให้หน่อย ลืมรหัส",
+    "product": "dashboard",
+    "issue_type": "service request",
+    "category": "user management/security",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "อยากรู้ว่า connect รองรับ iOS ด้วยมั้ย หรือรองรับแค่ Android",
+    "product": "connect",
+    "issue_type": "inquiry",
+    "category": "connectivity",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ถ้าไม่มี internet จะใช้ connect ได้มั้ย ข้อมูลจะ sync ตอนไหน",
+    "product": "connect",
+    "issue_type": "inquiry",
+    "category": "data sync",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ควรแจ้งล่วงหน้าก่อน maintenance อย่างน้อย 1 วัน ลูกค้าตกใจว่าระบบมีปัญหา",
+    "product": "other",
+    "issue_type": "feedback",
+    "category": "communication",
+    "severity": "S3",
+    "tenant": null
+  },
+  {
+    "text": "เจ้าหน้าที่ใหม่ไม่รู้วิธีใช้ connect ขอให้มีคู่มือการใช้งาน",
+    "product": "connect",
+    "issue_type": "service request",
+    "category": "training",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ขอนัดสอนการใช้งาน dashboard ให้ทีมที่เพิ่งเข้ามาใหม่",
+    "product": "dashboard",
+    "issue_type": "service request",
+    "category": "training",
+    "severity": "S4",
+    "tenant": null
+  },
+  {
+    "text": "ระบบตอบสนองช้าช่วงเช้า เริ่มงาน 8 โมง ทุกคนเข้าพร้อมกันแล้วช้ามาก",
+    "product": "dashboard",
+    "issue_type": "incident/bug",
+    "category": "infra/performance",
+    "severity": "S3",
+    "tenant": null
+  },
+  {
+    "text": "ควรรีบทำฟีเจอร์ลืมรหัสผ่าน มีหลายที่ที่ login web dashboard แล้วลืมรหัส",
+    "product": "dashboard",
+    "issue_type": "feature request",
+    "category": "user management/security",
+    "severity": "S3",
+    "tenant": null
+  }
+]

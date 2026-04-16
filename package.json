@@ -1,0 +1,26 @@
+{
+  "name": "line-bot-github-issue",
+  "version": "1.0.0",
+  "description": "LINE Messaging API webhook that classifies support requests and creates GitHub issues",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@octokit/auth-app": "^8.2.0",
+    "@octokit/rest": "^22.0.1",
+    "dotenv": "^17.3.1",
+    "express": "^4.19.2",
+    "octokit": "^5.0.5"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.2"
+  }
+}

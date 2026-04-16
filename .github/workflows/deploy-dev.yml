@@ -1,0 +1,101 @@
+name: Deploy to Cloud Run (Dev)
+
+on:
+  push:
+    branches:
+      - dev
+    paths-ignore:
+      - 'classifier/**'
+      - '.github/workflows/deploy-classifier.yml'
+      - '.github/workflows/deploy-classifier-dev.yml'
+
+env:
+  SERVICE_NAME: ${{ vars.SERVICE_NAME_DEV }}
+  REGION: ${{ vars.GCP_REGION }}
+  IMAGE: ${{ vars.ARTIFACT_REGISTRY_IMAGE }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    needs: test
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ env.IMAGE }}:dev-${{ github.sha }}
+          cache-from: type=registry,ref=${{ env.IMAGE }}:dev-cache
+          cache-to: type=registry,ref=${{ env.IMAGE }}:dev-cache,mode=max
+
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          image: ${{ env.IMAGE }}:dev-${{ github.sha }}
+          region: ${{ env.REGION }}
+          flags: >-
+            --memory=256Mi
+            --cpu=1
+            --min-instances=0
+            --max-instances=10
+            --concurrency=80
+            --timeout=60
+            --allow-unauthenticated
+          env_vars: |-
+            NODE_ENV=development
+            GITHUB_APP_ID=${{ vars.GITHUB_APP_ID }}
+            GITHUB_APP_INSTALLATION_ID=${{ vars.GITHUB_APP_INSTALLATION_ID }}
+            GITHUB_OWNER=${{ vars.GITHUB_OWNER }}
+            GITHUB_REPO=${{ vars.GITHUB_REPO }}
+            GITHUB_PROJECT_NUMBER=${{ vars.GITHUB_PROJECT_NUMBER }}
+            CLASSIFIER_URL=${{ vars.CLASSIFIER_URL }}
+            CONFIDENCE_THRESHOLD=${{ vars.CONFIDENCE_THRESHOLD }}
+            LINE_GROUP_TENANT_MAP=${{ secrets.LINE_GROUP_TENANT_MAP }}
+          secrets: |-
+            LINE_CHANNEL_SECRET=LINE_CHANNEL_SECRET_DEV:latest
+            LINE_CHANNEL_ACCESS_TOKEN=LINE_CHANNEL_ACCESS_TOKEN_DEV:latest
+            GITHUB_APP_PRIVATE_KEY=GITHUB_APP_PRIVATE_KEY:latest

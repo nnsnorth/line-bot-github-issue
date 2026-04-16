@@ -1,0 +1,87 @@
+name: Deploy Classifier to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'classifier/**'
+      - '.github/workflows/deploy-classifier.yml'
+
+env:
+  SERVICE_NAME: ${{ vars.CLASSIFIER_SERVICE_NAME }}
+  REGION: ${{ vars.GCP_REGION }}
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  IMAGE: ${{ vars.CLASSIFIER_IMAGE }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: classifier/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r classifier/requirements.txt
+
+      - name: Check syntax
+        run: python -m py_compile classifier/classify.py classifier/main.py
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: test
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: classifier
+          push: true
+          tags: ${{ env.IMAGE }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ env.IMAGE }}:cache
+          cache-to: type=registry,ref=${{ env.IMAGE }}:cache,mode=max
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy $SERVICE_NAME \
+            --image=$IMAGE:${{ github.sha }} \
+            --region=$REGION \
+            --project=$PROJECT_ID \
+            --memory=2Gi \
+            --cpu=1 \
+            --min-instances=0 \
+            --max-instances=2 \
+            --concurrency=10 \
+            --timeout=60 \
+            --no-allow-unauthenticated
