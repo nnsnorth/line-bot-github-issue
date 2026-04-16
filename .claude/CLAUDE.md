@@ -6,26 +6,27 @@ LINE Messaging API webhook server that receives support requests via `@support <
 
 - **Webhook Service**: Node.js 24 / Express.js (ES Modules)
 - **Classifier Service**: Python 3.11 / FastAPI with k-NN text embedding (paraphrase-multilingual-MiniLM-L12-v2)
-- **Deployment**: Google Cloud Run (containerized), auto-deployed via GitHub Actions
+- **Deployment**: Google Cloud Run (separate services for webhook + classifier), auto-deployed via GitHub Actions
 - **Integrations**: LINE Messaging API, GitHub GraphQL API, GCP Secret Manager
 
 ## Project Structure
 
 ```
-server.js          # Local dev server (port 3000)
-index.js           # Google Cloud Functions entry point
+server.js              # Entry point (port 3000)
 src/
-  app.js           # Express app setup
-  config.js        # Environment config & validation
-  classifier.js    # Classifier API client
-  github.js        # GitHub GraphQL integration
-  fieldCache.js    # Project field metadata caching
-  lineHandler.js   # LINE webhook handler
-  octokit.js       # GitHub App authentication
+  app.js               # Express app, /health and /webhook routes
+  lineHandler.js       # Main webhook logic (tenant → product → issue)
+  lineClient.js        # LINE API: signature verify, reply, profiles
+  labelSelection.js    # Quick-reply UI, stateless postback encoding
+  classifier.js        # Classifier API client
+  github.js            # GitHub GraphQL: create issue, add to project
+  fieldCache.js        # Caches GitHub project field metadata
+  octokit.js           # GitHub App authentication
+  config.js            # Env var loading & validation
 classifier/
-  main.py          # FastAPI classifier server
-  classify.py      # k-NN embedding classifier
-  examples.json    # Training examples (Thai/multilingual)
+  main.py              # FastAPI server (/health, /classify)
+  classify.py          # k-NN embedding classifier
+  examples.json        # Training examples (Thai/multilingual)
 ```
 
 ## Development
@@ -40,7 +41,7 @@ npm run dev            # Runs node --watch server.js
 
 - `npm start` — Production server
 - `npm run dev` — Dev server with file watching
-- `npm run deploy` — Deploy to Google Cloud Functions
+- `npm run deploy` — Deploy webhook to Google Cloud Run
 
 ### Environment Variables
 
